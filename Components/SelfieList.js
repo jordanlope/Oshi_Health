@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
 import SelfieItem from "./SelfieItem";
 
 function SelfieList({ selfies }) {
