@@ -1,5 +1,11 @@
+import Camera from "./Camera";
+
 function AddSelfie() {
-    return <></>
+    return (
+        <>
+            <Camera />
+        </>
+    )
 }
 
 export default AddSelfie;
