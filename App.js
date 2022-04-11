@@ -6,7 +6,7 @@ import AllSelfies from './Screens/AllSelfies';
 import AddSelfie from './Screens/AddSelfie';
 import IconButton from './Components/UI/IconButton';
 import Camera from './Screens/Camera';
-import takeImageHandler from './Components/takeImageHandler';
+import takeImageHandler from './API/takeImageHandler';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,14 +26,16 @@ export default function App() {
                   icon="camera" 
                   size={24} 
                   color={tintColor} 
-                  onPress={takeImageHandler}/>
+                  onPress={() => {
+                    navigation.navigate('Selfie');
+                  }}/> //This should change to a screen
               )
             })}
           />
           <Stack.Screen 
             name="Selfie" 
             component={Camera} 
-            options={({ navigation }) => ({
+            options={() => ({
               title: "Selfie"
             })}/>
         </Stack.Navigator> 
