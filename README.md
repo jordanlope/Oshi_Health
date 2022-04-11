@@ -3,6 +3,7 @@
 Use nvm install 14.18.1 (https://stackoverflow.com/questions/69647332/cannot-read-properties-of-undefined-reading-transformfile-at-bundler-transfo)
 rm -rf node_modules && npm install
 
+If you get Node_Module not found error:
 If you are sure the module exists, try these steps:
  1. Clear watchman watches: watchman watch-del-all
  2. Delete node_modules and run yarn install
