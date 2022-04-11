@@ -1,5 +1,6 @@
 # Oshi Health
 
+Node Version:
 Use nvm install 14.18.1 (https://stackoverflow.com/questions/69647332/cannot-read-properties-of-undefined-reading-transformfile-at-bundler-transfo)
 rm -rf node_modules && npm install
 
@@ -13,7 +14,7 @@ And you are sure the module exists, try these steps:
 Some dependencies are incompatible with the installed expo package version:
  - react-native-safe-area-context - expected version: 3.3.2 - actual version installed: 4.2.4
 
-Installation
+Installation:
 expo install expo-image-picker
 
 Example app.json with config plugin
