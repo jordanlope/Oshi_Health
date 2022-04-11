@@ -15,6 +15,7 @@ Some dependencies are incompatible with the installed expo package version:
  - react-native-safe-area-context - expected version: 3.3.2 - actual version installed: 4.2.4
 
 Installation:
+Expo Image Picker(https://docs.expo.dev/versions/latest/sdk/imagepicker/#imagepickerlaunchcameraasyncoptions)
 expo install expo-image-picker
 
 Example app.json with config plugin
