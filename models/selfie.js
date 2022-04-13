@@ -1,8 +1,8 @@
-class Selfie {
-    constructor(imageUri, date, time) {
+export class Selfie {
+    constructor(imageUri) {
         this.imageUri = imageUri;
-        this.date = date;
-        this.time = time;
+        this.date = new Date().toString();
+        this.time = new Date().toTimeString();
         this.id = new Date().toString() + Math.random().toString();
     }
 }
