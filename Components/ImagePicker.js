@@ -1,36 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Camera } from 'expo-camera';
+import { Alert, View, Button, StyleSheet } from 'react-native';
+import { launchCameraAsync, useCameraPermissions, PermissionStatus } from 'expo-image-picker';
 
-export default function App() {
-  const [hasPermission, setHasPermission] = useState(null);
+export default function ImagePicker() {
+  const [cameraPermissionInformation, requestPermission] = useCameraPermissions();
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+  async function verifyPermission() {
+    if(cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
+      const permissionResponse = await requestPermission();
 
-  if (hasPermission === null) {
-    return <View />;
+      return permissionResponse.granted;
+    }
+
+    if(cameraPermissionInformation.status === PermissionStatus.DENIED) {
+      Alert.alert(
+        "Insufficent Permissions", 
+        "Please grant camera permissions to use this app");
+      return false;
+    }
+
+    return true;
   }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+
+  async function takeImageHandler() {
+    const hasPermission = await verifyPermission();
+    if(!hasPermission) {
+      return;
+    }
+    const image = await launchCameraAsync({
+        allowsEditing: false,
+        aspect: [16, 9],
+        quality: 0.5,
+        cameraType: 'front',
+        mediaType: 'photo'
+    });
+
+    console.log(image);
   }
+
   return (
     <View style={styles.container}>
-      <Camera type={Camera.Constants.Type.front} style={styles.camera}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-                console.log("Tapped")
-            }}>
-                <Text style={styles.text}>Tap Here</Text>
-          </TouchableOpacity>
-        </View>
-      </Camera>
+      <Button title="Take Image" onPress={takeImageHandler}/>
     </View>
   );
 }
