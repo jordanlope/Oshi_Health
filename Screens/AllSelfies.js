@@ -71,12 +71,7 @@ export default function AllSelfies({navigation}) {
   }
 
   const saveSelfieHandler = (uri) => {
-    const selfieData = {
-      imageUri: uri,
-      date: new Date().toString(),
-      time: new Date().toTimeString(),
-      id: new Date().toString() + Math.random().toString()
-    };
+    const selfieData = new Selfie(uri);
 
     setSelfies((selfies) => [
       selfieData,
