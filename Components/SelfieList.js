@@ -1,7 +1,9 @@
-import { FlatList, StyleSheet, View, Text } from "react-native";
+import { FlatList, StyleSheet, View, Text, Dimensions } from "react-native";
 import SelfieItem from "./SelfieItem";
 
+const numColumns = 2;
 function SelfieList({ selfies }) {
+
     if(!selfies || selfies.length === 0) {
         return (
             <View style={styles.fallbackContainer}>
@@ -11,10 +13,13 @@ function SelfieList({ selfies }) {
     }
 
     return (
-        <FlatList 
-            data={selfies}
-            keyExtractor={(item) => item.id}
-            renderItem={({item}) => <SelfieItem selfie={item}/>}/>
+        <View style={styles.container}>
+            <FlatList 
+                data={selfies}
+                keyExtractor={(item) => item.id}
+                renderItem={({item}) => <SelfieItem selfie={item}/>}
+                numColumns={numColumns}/>
+        </View>
     )
 }
 
@@ -28,5 +33,9 @@ const styles = StyleSheet.create({
     },
     fallbackText: {
         fontSize: 16
+    },
+    container: {
+        flex: 1,
+        paddingTop: 40
     }
 });
