@@ -2,16 +2,13 @@ import { Image, Text, View, Pressable, StyleSheet, Dimensions } from 'react-nati
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const numColumns = 2;
-const { width } = Dimensions.get('window');
-function SelfieItem({ selfie, onSelect}) {
-
+const { height, width } = Dimensions.get('window');
+function SelfieItem({ selfie}) {
 
     return (
-        <Pressable onPress={onSelect}>
-            <View style={styles.itemStyle}>
-                <Image key={selfie.id} source={{uri: selfie.imageUri}}/>
-                <Text>{selfie.date}</Text>
-                <Text>{selfie.time}</Text>
+        <Pressable >
+            <View>
+                <Image style={styles.image} source={{ uri: selfie.imageUri}}/>
             </View>
         </Pressable>
     );
@@ -33,15 +30,13 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        flex: 1
-    },
-    itemStyle: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: 100,
+        height: height / 3,
         flex: 1,
         margin: 1,
-        height: width / numColumns
+        width: width / numColumns,
+        shadowOpacity: .1
     },
     itemText: {
 
