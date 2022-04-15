@@ -1,8 +1,17 @@
+import { useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, View, Text, Dimensions } from "react-native";
 import SelfieItem from "./SelfieItem";
 
 const numColumns = 2;
 function SelfieList({ selfies }) {
+    const navigation = useNavigation();
+
+    function selectSelfieHandler(id) {
+        navigation.navigate('SelfieDetails', {
+            selfieId: id,
+            data: selfies
+        });
+    }
 
     if(!selfies || selfies.length === 0) {
         return (
@@ -17,7 +26,7 @@ function SelfieList({ selfies }) {
             <FlatList 
                 data={selfies}
                 keyExtractor={(item) => item.id}
-                renderItem={({item}) => <SelfieItem selfie={item}/>}
+                renderItem={({item}) => <SelfieItem selfie={item} onSelect={selectSelfieHandler}/>}
                 numColumns={numColumns}/>
         </View>
     )
@@ -36,6 +45,5 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        paddingTop: 40
     }
 });
