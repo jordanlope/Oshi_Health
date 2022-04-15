@@ -8,12 +8,10 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 export default function AllSelfies({navigation}) {
   const [cameraPermissionInformation, requestPermission] = useCameraPermissions();
   const [selfies, setSelfies] = useState([]);
-  const [uri, setURI] = useState('');
 
   useEffect(() => {
     console.log(selfies);
-    console.log(uri);
-  }, [selfies, uri])
+  }, [selfies]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -67,7 +65,6 @@ export default function AllSelfies({navigation}) {
       console.log("Uri value: " + value["uri"]);
       saveSelfieHandler(value["uri"]);
     });
-
   }
 
   const saveSelfieHandler = (uri) => {

@@ -3,21 +3,15 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const numColumns = 2;
 const { height, width } = Dimensions.get('window');
-function SelfieItem({selfie}) {
-    function getTime() {
-        const hour = parseInt(selfie.hour)
-        const time = (hour > 12 ? `${(hour-12).toString()}:${selfie.minutes}pm` : `${(hour).toString()}:${selfie.minutes}am`);
-        return (
-            <Text style={styles.imageText}>{time}</Text>
-        )
-    }
+
+function SelfieItem({selfie, onSelect}) {
 
     return (
-        <Pressable >
+        <Pressable onPress={onSelect.bind(this, selfie.id)}>
             <View>
                 <ImageBackground style={styles.image} blurRadius={4} source={{ uri: selfie.imageUri}}> 
-                    <Text style={styles.imageText}>{`${selfie.day}/${selfie.month}/${selfie.year}`}</Text>
-                    {getTime()}
+                    <Text style={styles.imageText}>{selfie.getTime()}</Text> 
+                    <Text style={styles.imageText}>{selfie.getDate()}</Text>                   
                 </ImageBackground>
             </View>
         </Pressable>
