@@ -10,7 +10,7 @@ export default function AllSelfies({navigation}) {
   const [selfies, setSelfies] = useState([]);
 
   useEffect(() => {
-    console.log(selfies);
+    console.log("Fetch Selfies: " +  selfies);
   }, [selfies]);
 
   useLayoutEffect(() => {
@@ -26,13 +26,13 @@ export default function AllSelfies({navigation}) {
   }, [navigation]);
 
   async function verifyPermission() {
-    const permissionResponse = await requestPermission();
+    // console.log(cameraPermissionInformation.status);
     // if(cameraPermissionInformation.status === PermissionStatus.UNDETERMINED || cameraPermissionInformation.status === null) {
-    //   console.log("1");
     //   const permissionResponse = await requestPermission();
+
     //   return permissionResponse.granted;
     // }
-    
+  
     // if(cameraPermissionInformation.status === PermissionStatus.DENIED) {
     //   console.log("2");
     //   Alert(
@@ -40,9 +40,6 @@ export default function AllSelfies({navigation}) {
     //     "Please grant camera permissions to use this app");
     //   return false;
     // }
-
-    console.log(permissionResponse);
-    console.log(cameraPermissionInformation);
 
     return true;
   }
