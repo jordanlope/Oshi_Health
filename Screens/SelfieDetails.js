@@ -1,4 +1,4 @@
-import { ScrollView, Image, View, Text, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, Image, View, Text, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
 
 function SelfieDetails({route}) {
@@ -14,13 +14,17 @@ function SelfieDetails({route}) {
     }, [selectedSelfieId]);
 
     return (
-        <ScrollView>
-            <Image style={styles.image} source={{uri: currentSelfie?.imageUri}}/>
-            <View style={styles.timeContainer}>
-                <Text style={styles.time}>{currentSelfie?.getTime()}</Text>
-                <Text style={styles.time}>{currentSelfie?.getDate()}</Text>
-            </View>
-        </ScrollView>
+        <SafeAreaView>
+            <ScrollView>
+                <View style={styles.timeContainer}>
+                    <Image style={styles.image} source={{uri: currentSelfie?.imageUri}}/>
+                </View>
+                <View style={styles.timeContainer}>
+                    <Text style={styles.time}>{currentSelfie?.getTime()}</Text>
+                    <Text style={styles.time}>{currentSelfie?.getDate()}</Text>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
@@ -33,11 +37,14 @@ const styles = StyleSheet.create({
     image: {
         height: '35%',
         minHeight: 300,
-        width: '100%'
+        width: '80%',
+        borderRadius: 15,
+        
     },
     timeContainer: {
+        flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     time: {
         textAlign: 'center',

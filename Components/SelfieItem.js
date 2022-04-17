@@ -9,7 +9,7 @@ function SelfieItem({selfie, onSelect}) {
     return (
         <Pressable onPress={onSelect.bind(this, selfie.id)}>
             <View>
-                <ImageBackground style={styles.image} blurRadius={4} source={{ uri: selfie.imageUri}}> 
+                <ImageBackground style={styles.image} imageStyle={{borderRadius: 16}} blurRadius={4} source={{ uri: selfie.imageUri}}> 
                     <Text style={styles.imageText}>{selfie.getTime()}</Text> 
                     <Text style={styles.imageText}>{selfie.getDate()}</Text>                   
                 </ImageBackground>
@@ -21,15 +21,6 @@ function SelfieItem({selfie, onSelect}) {
 export default SelfieItem;
 
 const styles = StyleSheet.create({
-    item: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        borderRadius: 6,
-        marginVertical: 12,
-        backgroundColor: Colors.primary500,
-        elevation: 2,
-        borderRadius: 4,
-    },
     pressed: {
 
     },
@@ -40,9 +31,8 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 1,
         width: width / numColumns,
-        shadowOpacity: .1,
+        paddingHorizontal: 15,
         marginTop: 15,
-        borderRadius: 15,
     },
     imageText: {
         color: "white",
@@ -51,5 +41,4 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
     },
-
 });
