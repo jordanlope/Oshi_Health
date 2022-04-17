@@ -10,8 +10,8 @@ function SelfieItem({selfie, onSelect}) {
         <Pressable onPress={onSelect.bind(this, selfie.id)}>
             <View>
                 <ImageBackground style={styles.image} imageStyle={{borderRadius: 16}} blurRadius={4} source={{ uri: selfie.imageUri}}> 
-                    <Text style={styles.imageText}>{selfie.getTime()}</Text> 
-                    <Text style={styles.imageText}>{selfie.getDate()}</Text>                   
+                    <Text style={styles.imageText}>{selfie.getDate()}</Text>   
+                    <Text style={styles.imageText}>{selfie.getTime()}</Text>                 
                 </ImageBackground>
             </View>
         </Pressable>
