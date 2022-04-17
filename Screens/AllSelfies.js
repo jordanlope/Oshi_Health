@@ -1,7 +1,6 @@
 import SelfieList from "../Components/SelfieList"
 import { launchCameraAsync, useCameraPermissions, PermissionStatus } from 'expo-image-picker';
 import { Selfie } from "../models/selfie";
-import { Alert } from 'react-native';
 import IconButton from '../Components/UI/IconButton';
 import { useState, useEffect, useLayoutEffect } from 'react';
 
@@ -20,7 +19,10 @@ export default function AllSelfies({navigation}) {
         <IconButton 
           icon="funnel-outline" 
           size={24} 
-          color={tintColor}  />
+          color={tintColor} 
+          onPress={() => {
+            console.log("Left Navigator Button clicked")
+          }} />
       ),
       headerRight: ({tintColor}) => (
         <IconButton 

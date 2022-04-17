@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { FlatList, StyleSheet, View, Text, Dimensions } from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
 import SelfieItem from "./SelfieItem";
 
 const numColumns = 2;
