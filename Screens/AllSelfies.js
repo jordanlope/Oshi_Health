@@ -10,11 +10,18 @@ export default function AllSelfies({navigation}) {
   const [selfies, setSelfies] = useState([]);
 
   useEffect(() => {
-    console.log(selfies);
+    console.log("AllSelfies useeffect()");
+    console.log("Fetched: " + selfies);
   }, [selfies]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      headerLeft: ({tintColor}) => (
+        <IconButton 
+          icon="funnel-outline" 
+          size={24} 
+          color={tintColor}  />
+      ),
       headerRight: ({tintColor}) => (
         <IconButton 
           icon="camera" 
