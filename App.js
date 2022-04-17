@@ -19,6 +19,7 @@ export default function App() {
             component={AllSelfies} 
             options={({ }) => ({
               title: "Selfies",
+              headerTitleAlign: "center"
             })}
           />
           <Stack.Screen 
