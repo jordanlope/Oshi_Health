@@ -20,8 +20,8 @@ function SelfieDetails({route}) {
                     <Image style={styles.image} source={{uri: currentSelfie?.imageUri}}/>
                 </View>
                 <View style={styles.timeContainer}>
-                    <Text style={styles.time}>{currentSelfie?.getTime()}</Text>
-                    <Text style={styles.time}>{currentSelfie?.getDate()}</Text>
+                    <Text style={styles.dateText}>{currentSelfie?.getDate()}</Text>
+                    <Text style={styles.timeText}>{currentSelfie?.getTime()}</Text>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -43,12 +43,18 @@ const styles = StyleSheet.create({
     },
     timeContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
     },
-    time: {
+    timeText: {
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 16,
+        textDecorationLine: 'underline'
+    },
+    dateText: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 16,
     }
 });

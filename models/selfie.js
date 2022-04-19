@@ -7,6 +7,7 @@ export class Selfie {
         this.hour = new Date().getHours();
         this.minutes = new Date().getMinutes();
         this.id = new Date().toString() + Math.random().toString();
+        this.date = new Date().getTime();
     }
 
     getTime() {

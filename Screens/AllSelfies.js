@@ -7,10 +7,11 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 export default function AllSelfies({navigation}) {
   const [cameraPermissionInformation, requestPermission] = useCameraPermissions();
   const [selfies, setSelfies] = useState([]);
+  const [cameraPermissions, setCameraPermissions] = useState()
 
   useEffect(() => {
-    console.log("AllSelfies useeffect()");
     console.log("Fetched: " + selfies);
+    setCameraPermissions(cameraPermissionInformation?.status);
   }, [selfies]);
 
   useLayoutEffect(() => {
@@ -34,28 +35,26 @@ export default function AllSelfies({navigation}) {
     });
   }, [navigation]);
 
-  async function verifyPermission() {
-    // console.log(cameraPermissionInformation.status);
-    // if(cameraPermissionInformation.status === PermissionStatus.UNDETERMINED || cameraPermissionInformation.status === null) {
-    //   const permissionResponse = await requestPermission();
+  async function verifyPermission(permissionStatus) {
+    if(permissionStatus === PermissionStatus.UNDETERMINED || permissionStatus === null) {
+      const permissionResponse = await requestPermission();
 
-    //   return permissionResponse.granted;
-    // }
+      return permissionResponse.granted;
+    }
   
-    // if(cameraPermissionInformation.status === PermissionStatus.DENIED) {
-    //   console.log("2");
-    //   Alert(
-    //     "Insufficent Permissions", 
-    //     "Please grant camera permissions to use this app");
-    //   return false;
-    // }
-
+    if(permissionStatus === PermissionStatus.DENIED) {
+      console.log("2");
+      Alert(
+        "Insufficent Permissions", 
+        "Please grant camera permissions to use this app");
+      return false;
+    }
     return true;
   }
 
   async function takeImageHandler() {
-    const hasPermission = await verifyPermission();
-    console.log(hasPermission);
+    const hasPermission = await verifyPermission(cameraPermissions);
+
     if(!hasPermission) {
       console.log("Has no permission");
       return;
