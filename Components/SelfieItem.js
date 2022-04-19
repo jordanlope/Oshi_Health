@@ -1,5 +1,4 @@
-import { ImageBackground, Text, View, Pressable, StyleSheet, Dimensions } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { SafeAreaView, ImageBackground, Text, View, Pressable, StyleSheet, Dimensions } from 'react-native';
 
 const numColumns = 2;
 const { height, width } = Dimensions.get('window');
@@ -7,14 +6,16 @@ const { height, width } = Dimensions.get('window');
 function SelfieItem({selfie, onSelect}) {
 
     return (
-        <Pressable onPress={onSelect.bind(this, selfie.id)}>
-            <View>
-                <ImageBackground style={styles.image} imageStyle={{borderRadius: 16}} blurRadius={4} source={{ uri: selfie.imageUri}}> 
-                    <Text style={styles.imageText}>{selfie.getDate()}</Text>   
-                    <Text style={styles.imageText}>{selfie.getTime()}</Text>                 
-                </ImageBackground>
-            </View>
-        </Pressable>
+        <SafeAreaView>
+            <Pressable onPress={onSelect.bind(this, selfie.id)}>
+                <View>
+                    <ImageBackground style={styles.image} imageStyle={{borderRadius: 16}} blurRadius={8} source={{ uri: selfie.imageUri}}> 
+                        <Text style={styles.imageText}>{selfie.getDate()}</Text>   
+                        <Text style={styles.imageText}>{selfie.getTime()}</Text>   
+                    </ImageBackground>
+                </View>
+            </Pressable>
+        </SafeAreaView>
     );
 }
 
